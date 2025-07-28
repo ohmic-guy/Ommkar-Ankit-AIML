@@ -4,4 +4,5 @@ df= pd.DataFrame({"Name": ["Ommkar","Ankit", "XYZ", "XNXX", "PRATIK"], "Score":[
 print(df)
 
 df["LowerCase"] = df["Name"].apply(lambda x: x.lower())
+df["UpperCase"] = df["Name"].apply(lambda x: x.upper())
 print(df)
