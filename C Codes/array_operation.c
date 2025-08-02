@@ -7,7 +7,7 @@ void display(int arr[], int n) {
     printf("Array: ");
     for (i = 0; i < n; i++)
         printf("%d ", arr[i]);
-    printf("\n"); // Add newline for better output
+    printf("\n");
 }
 
 int main() {
