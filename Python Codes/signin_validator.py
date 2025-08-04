@@ -1,5 +1,13 @@
 import re
+pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
 
+email = input("Enter your email: ")
+
+if re.match(pattern, email):
+    print("------Valid Email------")
+else:
+    print("------Invalid Email------")
+    
 def validate_password(password):
     if len(password) < 8:
         return "Password must be atleast 8 characters long."
@@ -16,7 +24,7 @@ def validate_password(password):
     if not re.search(r"[@$!%*?&]", password):
         return "Password must contain atleast one special character (@$!%*?&)."
     
-    return "Password is strong."
+    return "Password is strong.\n------Credentials accepted successfully------"
 
 password = input("Enter password: ")
 print(validate_password(password))
