@@ -10,7 +10,7 @@ class PrimeCheck {
         if (isPrime(num))
             System.out.println(num + " is a prime number.");
         else
-            System.out.println(num + " is not a composite number.");
+            System.out.println(num + " is a composite number.");
 
         sc.close();
     }
