@@ -28,6 +28,18 @@ print(pl[['Pokemon_Name', 'Total Stats']])
 avg_hp_by_type = pl.groupby('Primary_Type')['Hit_Points'].mean()
 print(avg_hp_by_type)
 
+if 'Type 2' in pl.columns:
+	pl = pl.drop(['Type 2'], axis=1)
+
+pl = pl.dropna()
+pl = pl.fillna(0)
+
+pl = pl.reset_index(drop=True)
+pl.to_csv('Pokemon_modified.csv', index=False)
+
+
+
+
 plt.figure(figsize=(12,6))
 sns.barplot(x=avg_hp_by_type.index, y=avg_hp_by_type.values)
 plt.xticks(rotation=45)
@@ -57,12 +69,3 @@ plt.ylabel('Defense Points')
 plt.tight_layout()
 plt.savefig('attack_vs_defense.png')
 plt.show()
-
-if 'Type 2' in pl.columns:
-	pl = pl.drop(['Type 2'], axis=1)
-
-pl = pl.dropna()
-pl = pl.fillna(0)
-
-pl = pl.reset_index(drop=True)
-pl.to_csv('Pokemon_modified.csv', index=False)
