@@ -1,14 +1,43 @@
 import pandas as pd
 
-pl = pd.read_csv("Pokemon.csv", encoding='latin1')
-print("Available columns:")
-print(list(pl.columns))
 
-col = input("Enter the column name to sort by: ")
-if col in pl.columns:
-	order = input("Sort ascending? (y/n): ").strip().lower()
-	ascending = True if order == 'y' else False
-	sorted_pl = pl.sort_values(by=col, ascending=ascending)
-	print(sorted_pl)
-else:
-	print(f"Column '{col}' not found. Please check the column name and try again.")
+pl = pd.read_csv("Pokemon.csv", encoding='latin1')
+
+print(pl.head()) 
+print(pl.tail())
+
+
+print(pl.info())
+print(pl.describe())
+
+
+print(pl['Pokemon_Name'])
+print(pl[['Pokemon_Name', 'Type 1']])
+fire_pokemon = pl[pl['Type 1'] == 'Fire']
+print(fire_pokemon)
+
+
+sorted_by_hp = pl.sort_values('HP', ascending=False)
+print(sorted_by_hp)
+
+
+pl['Total Stats'] = pl['HP'] + pl['Attack'] + pl['Defense']
+print(pl[['Pokemon_Name', 'Total Stats']])
+
+
+avg_hp_by_type = pl.groupby('Type 1')['HP'].mean()
+print(avg_hp_by_type)
+
+
+pl = pl.drop(['Type 2'], axis=1)
+pl = pl.dropna()
+
+
+pl = pl.fillna(0)
+
+
+pl = pl.rename(columns={'Type 1': 'Primary Type'})
+
+pl = pl.reset_index(drop=True)
+
+pl.to_csv('Pokemon_modified.csv', index=False)
