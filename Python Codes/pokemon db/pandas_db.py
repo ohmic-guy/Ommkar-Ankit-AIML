@@ -12,20 +12,20 @@ print(pl.describe())
 
 
 print(pl['Pokemon_Name'])
-print(pl[['Pokemon_Name', 'Type 1']])
-fire_pokemon = pl[pl['Type 1'] == 'Fire']
+print(pl[['Pokemon_Name', 'Primary_Type']])
+fire_pokemon = pl[pl['Primary_Type'] == 'Fire']
 print(fire_pokemon)
 
 
-sorted_by_hp = pl.sort_values('HP', ascending=False)
+sorted_by_hp = pl.sort_values('Hit_Points', ascending=False)
 print(sorted_by_hp)
 
 
-pl['Total Stats'] = pl['HP'] + pl['Attack'] + pl['Defense']
+pl['Total Stats'] = pl['Hit_Points'] + pl['Attack_Points'] + pl['Defense_Points']
 print(pl[['Pokemon_Name', 'Total Stats']])
 
 
-avg_hp_by_type = pl.groupby('Type 1')['HP'].mean()
+avg_hp_by_type = pl.groupby('Primary_Type')['Hit_Points'].mean()
 print(avg_hp_by_type)
 
 
@@ -36,7 +36,7 @@ pl = pl.dropna()
 pl = pl.fillna(0)
 
 
-pl = pl.rename(columns={'Type 1': 'Primary Type'})
+pl = pl.rename(columns={'Type 1': 'Primary_Type'})
 
 pl = pl.reset_index(drop=True)
 
