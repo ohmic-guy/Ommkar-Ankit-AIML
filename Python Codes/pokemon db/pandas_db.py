@@ -1,6 +1,6 @@
 import pandas as pd
 
-pl = pd.read_excel(r"pokemon.xlsx")
+pl = pd.read_csv("Pokemon.csv", encoding='latin1')
 print("Available columns:")
 print(list(pl.columns))
 
