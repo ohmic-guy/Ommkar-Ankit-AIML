@@ -5,7 +5,6 @@ import seaborn as sns
 
 pl = pd.read_csv("Pokemon.csv", encoding='latin1')
 
-
 if 'Type 1' in pl.columns:
 	pl = pl.rename(columns={'Type 1': 'Primary_Type'})
 
@@ -27,7 +26,6 @@ pl['Total Stats'] = pl['Hit_Points'] + pl['Attack_Points'] + pl['Defense_Points'
 print(pl[['Pokemon_Name', 'Total Stats']])
 
 avg_hp_by_type = pl.groupby('Primary_Type')['Hit_Points'].mean()
-
 print(avg_hp_by_type)
 
 plt.figure(figsize=(12,6))
