@@ -1,4 +1,7 @@
+
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 pl = pd.read_csv("Pokemon.csv", encoding='latin1')
@@ -25,7 +28,37 @@ pl['Total Stats'] = pl['Hit_Points'] + pl['Attack_Points'] + pl['Defense_Points'
 print(pl[['Pokemon_Name', 'Total Stats']])
 
 avg_hp_by_type = pl.groupby('Primary_Type')['Hit_Points'].mean()
+
 print(avg_hp_by_type)
+
+# --- Visualization Section ---
+# 1. Bar plot: Average HP by Primary Type
+plt.figure(figsize=(12,6))
+sns.barplot(x=avg_hp_by_type.index, y=avg_hp_by_type.values)
+plt.xticks(rotation=45)
+plt.title('Average Hit Points by Primary Type')
+plt.xlabel('Primary Type')
+plt.ylabel('Average Hit Points')
+plt.tight_layout()
+plt.show()
+
+# 2. Histogram: Total Stats
+plt.figure(figsize=(8,6))
+sns.histplot(pl['Total Stats'], bins=30, kde=True)
+plt.title('Distribution of Total Stats')
+plt.xlabel('Total Stats')
+plt.ylabel('Count')
+plt.tight_layout()
+plt.show()
+
+# 3. Scatter plot: Attack vs Defense
+plt.figure(figsize=(8,6))
+sns.scatterplot(x=pl['Attack_Points'], y=pl['Defense_Points'], hue=pl['Primary_Type'], legend=False)
+plt.title('Attack vs Defense by Primary Type')
+plt.xlabel('Attack Points')
+plt.ylabel('Defense Points')
+plt.tight_layout()
+plt.show()
 
 if 'Type 2' in pl.columns:
 	pl = pl.drop(['Type 2'], axis=1)
