@@ -45,7 +45,6 @@ class Point2D {
 class Point3D extends Point2D {
     
     private int z = 0;
-
     public Point3D() {
         super(); 
         this.z = 0;
