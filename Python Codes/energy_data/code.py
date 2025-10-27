@@ -7,7 +7,7 @@ import re
 import os
 
 # --------------------------
-# 1️ Load and Clean Energy Data
+#Load and Clean Energy Data
 # --------------------------
 
 energy = pd.read_excel(
@@ -48,7 +48,7 @@ rename_dict = {
 energy = energy.replace({"Country": rename_dict})
 
 # --------------------------
-# 2️ Load and Clean GDP Data
+#Load and Clean GDP Data
 # --------------------------
 
 gdp = pd.read_csv("world_bank(1).csv", skiprows=4)
@@ -68,7 +68,7 @@ gdp_years = ['Country'] + [str(y) for y in range(2006, 2016)]
 gdp = gdp[gdp_years]
 
 # --------------------------
-# 3️ Load ScimEn Data
+#Load ScimEn Data
 # --------------------------
 
 scimen_file = "scimagojr-3(1).xlsx"
@@ -76,7 +76,7 @@ scimen_engine = "openpyxl" if scimen_file.endswith(".xlsx") else "xlrd"
 scimen = pd.read_excel(scimen_file, engine=scimen_engine)
 
 # --------------------------
-# 4️ Merge the Three Datasets
+#Merge the Three Datasets
 # --------------------------
 
 merged = pd.merge(scimen, energy, on='Country', how='inner')
@@ -99,7 +99,7 @@ cols = [
 final_df = merged.loc[:, cols]
 
 # --------------------------
-# 5️ Display / Export
+#Display / Export
 # --------------------------
 
 print(" Final DataFrame shape:", final_df.shape)
